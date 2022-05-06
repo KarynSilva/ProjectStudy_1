@@ -12,6 +12,8 @@ class Food(BaseModel):
 
 app = FastAPI()
 
+food_default = {"id": "None","name": "None", "origination":"None", "created":"None"}
+
 food_db = [{"id": "0","name": "Panna Cotta", "origination":"Piemonte - Italy", "created":"20th century"},
 {"id": "1","name": "Croissant", "origination":"Viena - Austria", "created":"1683"},
 {"id": "2","name": "Capuccino", "origination":"Brasil", "created":"16th or 17th century"},
@@ -40,7 +42,8 @@ async def update_food(food: Food):
 
 @app.delete("/foods/{food_id}")
 async def delete_food(food_id: str):
-    #food_db[int(food_id)].update({"name": "None", "origination":"None", "created":"None"})
+    food_default.update({"id": food_id})
+    food_db[int(food_id)]= food_default
     return 'Data removed successfully,please list again to see it!'
 
 food_insert = {
@@ -56,4 +59,3 @@ food_edit =   {
         "origination": "Italy",
         "created": "16th or 17th century"
               }
-#http://127.0.0.1:8000/foods/
