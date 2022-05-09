@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+
 class Food(BaseModel):
     _id:str
     name: str
@@ -17,6 +18,7 @@ client = MongoClient()
 client = MongoClient('localhost', 27017)
 db = client.FoodsDatabase
 food_db = list(db.foodscoll.find())
+
 @app.get("/foods/")
 async def read_food_list(skip:int =0, limit:int=10):return food_db[skip : skip + limit]  
 
