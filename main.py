@@ -1,7 +1,6 @@
 import datetime,json
-from xxlimited import foo
 from pymongo import MongoClient
-from fastapi import FastAPI,requests
+from fastapi import FastAPI
 from pydantic import BaseModel
 import operations as op
 
@@ -70,7 +69,7 @@ def delete_food(food_id: str):
     return 'Data removed successfully,please list again to see it!'
 
 
-    
+
 '''
 food_insert = {"_id":"None","name": "Pizza",
         "origination": "Campania - Italy",
