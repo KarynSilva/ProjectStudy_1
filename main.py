@@ -1,4 +1,4 @@
-import datetime,json
+import datetime
 from pymongo import MongoClient
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -14,8 +14,8 @@ class Food(BaseModel):
     created: str
     date: str
 
-   
-#client = MongoClient()
+
+
 client = MongoClient('mongodb://karyn:pass@localhost:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
 db = client.Foods
 
