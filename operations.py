@@ -1,4 +1,4 @@
-import datetime,json
+import datetime
 from pymongo import MongoClient
 
 
