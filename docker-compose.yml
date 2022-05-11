@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  projectstudy1:
+    image: projectstudy1
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000

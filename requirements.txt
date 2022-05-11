@@ -1,3 +1,5 @@
-json
-fastapi
-pydantic
+fastapi==0.75.2
+uvicorn==0.17.6
+pydantic==1.9.0
+pymongo==4.1.1
+starlette==0.17.1
