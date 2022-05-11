@@ -15,10 +15,9 @@ class Food(BaseModel):
     date: str
 
    
-client = MongoClient()
-client = MongoClient('localhost', 27017)
-food_db = []
-db = client.FoodsDatabase
+#client = MongoClient()
+client = MongoClient('mongodb://karyn:pass@localhost:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+db = client.Foods
 
 
 @app.get("/foods/")

@@ -2,11 +2,11 @@ import datetime,json
 from pymongo import MongoClient
 
 
-client = MongoClient()
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://karyn:pass@localhost:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+db = client.Foods
 
 date_now ="None"
-db = client.FoodsDatabase
+
 
 def start():
     date_now = str(datetime.datetime.now())
