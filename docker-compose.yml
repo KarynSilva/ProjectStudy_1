@@ -12,6 +12,9 @@ services:
       - db
   db:
     image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=karyn
+      - MONGO_INITDB_ROOT_PASSWORD=pass
     ports:
       - "27017:27017"
     volumes:
