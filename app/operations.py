@@ -2,7 +2,7 @@ import datetime
 from pymongo import MongoClient
 
 
-client = MongoClient('mongodb://karyn:pass@localhost:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+client = MongoClient('mongodb://karyn:pass@mongo-project:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
 db = client.Foods
 
 date_now ="None"
