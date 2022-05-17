@@ -18,5 +18,6 @@ def start():
     {"_id":'4',"name": "Crème brûlée", "origination":"France", "created":"17th century","date": date_now},
     {"_id":'5',"name": "Macarons", "origination":"Veneto - Italy", "created":"16th century","date": date_now}]
     
+    
     db.foodscoll.insert_many(f_list)
 
