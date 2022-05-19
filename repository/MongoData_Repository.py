@@ -11,7 +11,7 @@ food_db = []
 
 class operations():
     def __init__(self):
-        self
+        self = None
     def start():
         date_now = str(datetime.datetime.now())
     
