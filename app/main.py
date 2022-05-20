@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI,Depends
 from pydantic import BaseModel
-from repository.MongoData_Repository import Mongo_Foods_Repository as mrep
+from app.repository.MongoData_Repository import Mongo_Foods_Repository as mrep
 
 app = FastAPI()
 
