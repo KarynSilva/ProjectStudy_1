@@ -1,6 +1,5 @@
 from pymongo import MongoClient
-from app import operations as op
-from app.main import Food
+from api.app.models.food import Food
 import datetime
 
 
@@ -12,7 +11,7 @@ food_db = []
 class operations():
     def __init__(self):
         self = None
-    def start():
+    def start(self):
         date_now = str(datetime.datetime.now())
     
         f_list = [{"_id":'0', "name": "Panna Cotta", "origination":"Piemonte - Italy", "created":"20th century","date": date_now},
@@ -22,17 +21,17 @@ class operations():
         {"_id":'4',"name": "Crème brûlée", "origination":"France", "created":"17th century","date": date_now},
         {"_id":'5',"name": "Macarons", "origination":"Veneto - Italy", "created":"16th century","date": date_now}]
         db.foodscoll.insert_many(f_list)
+    def update(self):
+        food_db = list(db.foodscoll.find())
+
+op = operations()
 
 class Mongo_Foods_Repository():
     def __init__(self):
-        self.update()
-        if(not food_db):
-            op = operations()
-            op.start() 
-            self.update()
-
-    def update(self):
         food_db = list(db.foodscoll.find())
+        if(not food_db):
+            op.start(None) 
+            op.update(None)
     def list(self):
         return food_db
 
@@ -40,7 +39,7 @@ class Mongo_Foods_Repository():
         food_i = {"_id": str(len(food_db)),"name": food.name,"origination": food.origination,"created": food.created,
         "date": str(datetime.datetime.now())}
         db.foodscoll.insert_one(food_i)
-        self.update()
+        op.update(None)
 
     def list_by_id(self, food_id : str):
         return food_db[int(food_id)]
@@ -51,11 +50,11 @@ class Mongo_Foods_Repository():
                 food_id = food_db[i].get("_id")
         db.foodscoll.replace_one({"_id" : food_id},{"name":food.name,"origination":food.origination,
         "created":food.created,"date": str(datetime.datetime.now())})
-        self.update()
+        op.update(None)
 
     def delete(self,food_id:str):
         db.foodscoll.delete_many({"_id":food_id})
-        self.update()
+        op.update(None)
 
 
         

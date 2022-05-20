@@ -14,8 +14,9 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN python3.8 -m pip install -r requirements.txt
 
-WORKDIR /app
-COPY . app/
+WORKDIR /api
+RUN mkdir app
+COPY . /api/app /api/
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
@@ -23,4 +24,4 @@ COPY . app/
 #USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-k", "uvicorn.workers.UvicornWorker", "app.main:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-k", "uvicorn.workers.UvicornWorker", "api.app.main:app"]
