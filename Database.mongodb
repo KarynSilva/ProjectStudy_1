@@ -10,3 +10,4 @@ use(database);
 // Create a new collection.
 db.createCollection(collection);
 
+
