@@ -131,3 +131,4 @@ data.txt
 .vscode/launch.json
 .vscode/tasks.json
 /data
+.vscode/settings.json

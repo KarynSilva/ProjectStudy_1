@@ -1,31 +1,17 @@
+from operator import eq
 from fastapi.testclient import TestClient
-from app.main import app
+from api.app.main import app
 
 client = TestClient(app)
 
 def test_initial_data():
     response = client.get("/foods/")
     assert response.status_code == 200
-    data = response.json()
-    
+    data = list(response.json())
+    assert len(data) == 6
     assert data[0]["name"] == "Panna Cotta"
-    assert data[1]["name"] == "Croissant"
-    assert data[2]["name"] == "Capuccino"
-    assert data[3]["name"] == "Gianduia"
-    assert data[4]["name"] == "Crème brûlée"
-    assert data[5]["name"] == "Macarons"
     assert data[0]["origination"] == "Piemonte - Italy"
-    assert data[1]["origination"] == "Viena - Austria"
-    assert data[2]["origination"] == "Brasil"
-    assert data[3]["origination"] == "Piemonte - Italy"
-    assert data[4]["origination"] == "France"
-    assert data[5]["origination"] == "Veneto - Italy"
     assert data[0]["created"] == "20th century"
-    assert data[1]["created"] == "1683"
-    assert data[2]["created"] == "16th or 17th century"
-    assert data[3]["created"] == "1806 - 19th century"
-    assert data[4]["created"] == "17th century"
-    assert data[5]["created"] == "16th century"
     
 def test_getbyid():
     response = client.get(
