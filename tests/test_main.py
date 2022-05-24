@@ -1,10 +1,9 @@
-from operator import eq
 from fastapi.testclient import TestClient
 from api.app.main import app
 
 client = TestClient(app)
 
-def test_initial_data():
+def test_initialdata():
     response = client.get("/foods/")
     assert response.status_code == 200
     data = list(response.json())
@@ -25,7 +24,7 @@ def test_getbyid():
     assert data["created"] == "1806 - 19th century"
     
 
-def test_create_food():
+def test_createfood():
     response = client.post(
         "/foods/",
         json={"_id":"None","name": "Pizza",
@@ -37,7 +36,7 @@ def test_create_food():
     assert response.status_code == 201
     assert response == 'Data entered successfully,please list again to see it!'
 
-def test_edit_food():
+def test_editfood():
     response = client.put(
         "/foods/{food_id}/",
         json={"_id":"2","name": "Capuccino",
@@ -49,7 +48,7 @@ def test_edit_food():
     assert response.status_code == 200
     assert response == 'Data changed successfully,please list again to see it!'
 
-def test_delete_food():
+def test_deletefood():
     response = client.delete(
     food_id = "4"
     )
