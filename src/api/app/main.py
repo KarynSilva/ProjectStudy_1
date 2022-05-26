@@ -34,3 +34,4 @@ def delete_food(food_id: str, repository: mrep = Depends(mrep)):
 
 if __name__ == "__main__":
     uvicorn.run(app=app)
+    
