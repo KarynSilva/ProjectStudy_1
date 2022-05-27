@@ -6,3 +6,4 @@ starlette==0.17.1
 gunicorn==20.1.0
 pytest==6.2.3
 requests==2.25.1
+mock==4.0.3
