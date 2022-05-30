@@ -1,52 +1,55 @@
 from fastapi.testclient import TestClient
-from api.app.main import app
+from api.app.main import app, read_food_list, read_food, create_food, update_food, delete_food
+from mocks.mock_mongodata import MockFoodRepository as mrep
+import json
+
 
 client = TestClient(app)
 
-def test_initialdata():
-    response = client.get("/foods")
+
+def test_list_all():
+    response = client.get("/foods/list")
     assert response.status_code == 200
     
 def test_getbyid():
     response = client.get(
-        "/foods/{food_id}",
-        food_id = "3"         
+        "/foods/list/3",        
     )
     assert response.status_code == 200
-    data = response.json()
-    assert data["name"] == "Gianduia"
-    assert data["origination"] == "Piemonte - Italy"
-    assert data["created"] == "1806 - 19th century"
-    
 
 def test_createfood():
     response = client.post(
-        "/foods",
-        json={"_id":"None","name": "Pizza",
+        "/foods/create",
+        json.dumps({"_id":"None","name": "Pizza",
         "origination": "Campania - Italy",
         "created": "18th century",
         "date": "None"
-              },
+              }, indent=2)
     )
     assert response.status_code == 201
-    assert response == 'Data entered successfully,please list again to see it!'
+   
 
 def test_editfood():
     response = client.put(
-        "/foods/{food_id}",
-        json={"_id":"2","name": "Capuccino",
+        "/foods/edit/2",
+        json.dumps({"_id":"2","name": "Capuccino",
         "origination": "Italy",
         "created": "16th or 17th century",
         "date": "None"
-              },
+              }, indent=2)
     )
     assert response.status_code == 200
-    assert response == 'Data changed successfully,please list again to see it!'
+    
 
 def test_deletefood():
     response = client.delete(
-    "/foods/{food_id}",
-    food_id = "4"
+    "/foods/delete/4",
     )
     assert response.status_code == 200
-    assert response == 'Data removed successfully,please list again to see it!'
+    
+
+def test_read_food_list():
+    data_test = read_food("1",mrep)
+    flag = (not data_test)
+    assert flag == False
+    

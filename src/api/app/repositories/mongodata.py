@@ -2,7 +2,8 @@ from pymongo import MongoClient
 from api.app.models.food import Food
 import datetime
 from api.app.tools import operations
-client = MongoClient('mongodb://karyn:pass@mongo-project:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+#client = MongoClient('mongodb://karyn:pass@mongo-project:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+client = MongoClient('mongodb://localhost:27018/?readPreference=primary&ssl=false', connect=True)
 db = client.Foods
 
 class FoodRepository(): 
@@ -48,7 +49,7 @@ class FoodRepository():
     def delete(self,food_id:str):
 
         db.foodscoll.delete_many({"_id":food_id})
-        self.createfood_db = list(self.food_collection.find())
+        self.food_db = list(self.food_collection.find())
 
 
         

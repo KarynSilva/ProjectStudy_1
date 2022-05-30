@@ -2,7 +2,8 @@ from pymongo import MongoClient
 from collections import namedtuple
 import datetime
 
-client = MongoClient('mongodb://karyn:pass@mongo-project:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+#client = MongoClient('mongodb://karyn:pass@mongo-project:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+client = MongoClient('mongodb://localhost:27018/?readPreference=primary&ssl=false', connect=True)
 db = client.Foods
 
 food_db = []
