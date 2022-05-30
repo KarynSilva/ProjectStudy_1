@@ -4,12 +4,13 @@ import datetime
 
 client = MongoClient('mongodb://karyn:pass@mongo-project:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
 db = client.Foods
-f_list = []
+
 food_db = []
+data = db.foodscoll
 
 def Initial_Check():
 
-    food_db = list(db.foodscoll.find())
+    food_db = list(data.find())
 
     if(not food_db):
 
@@ -23,7 +24,7 @@ def Initial_Check():
                 {"_id":'5',"name": "Macarons", "origination":"Veneto - Italy", "created":"16th century","date": date_now}
                  ]
     
-        db.foodscoll.insert_many(f_list)
+        data.insert_many(f_list)
 
 def Cast_Many_to_Object(food_list:list):
 
