@@ -1,10 +1,10 @@
 import uvicorn
 from fastapi import FastAPI, Depends
-#from api.app.repositories.mongodata import FoodRepository as mrep # Official Repository, connected at mongo
+#from api.app.repositories.mongodata import FoodRepository as mrep # Official repository, connected at mongo
 from mocks.mock_mongodata import MockFoodRepository as mrep # Repository "local" just to run the tests
 from api.app.models.food import Food
 
-
+#Attention: integration tests referring to 'test_main_requests.py' also work with Official repository
 app = FastAPI()
 
 @app.get("/foods/list", status_code = 200)
