@@ -2,8 +2,13 @@ from pymongo import MongoClient
 from api.app.models.food import Food
 import datetime
 from api.app.tools import operations
+
+#docker mongo connection
 #client = MongoClient('mongodb://karyn:pass@mongo-project:27017/?authSource=admin&authMechanism=SCRAM-SHA-1', connect=True)
+
+#mongo local for tests connection
 client = MongoClient('mongodb://localhost:27018/?readPreference=primary&ssl=false', connect=True)
+
 db = client.Foods
 
 class FoodRepository(): 
@@ -33,7 +38,7 @@ class FoodRepository():
         return operations.Cast_One_to_Object(self.food_db[int(food_id)])
 
     def edit(self,food:Food):
-
+        
         for i in range(len(self.food_db)):
 
             if(self.food_db[i]["name"]==food.name):

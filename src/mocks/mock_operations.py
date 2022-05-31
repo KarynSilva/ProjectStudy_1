@@ -4,7 +4,8 @@ import datetime
 def Initial_Check(data:list):
     
     date_now = str(datetime.datetime.now())
-    data = [
+    if(not data):
+        data = [
             {"_id":'0', "name": "Panna Cotta", "origination":"Piemonte - Italy", "created":"20th century","date": date_now},
             {"_id":'1',"name": "Croissant", "origination":"Viena - Austria", "created":"1683","date": date_now},
             {"_id":'2',"name": "Capuccino", "origination":"Brasil", "created":"16th or 17th century","date": date_now},
