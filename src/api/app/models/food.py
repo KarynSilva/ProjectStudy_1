@@ -7,3 +7,5 @@ class Food(BaseModel):
     origination:str 
     created: str
     date: str
+
+    
