@@ -2,10 +2,8 @@ from pydantic import BaseModel
 
 
 class Food(BaseModel):
-    _id:str
+    _id: str
     name: str
-    origination:str 
+    origination: str
     created: str
     date: str
-
-    
